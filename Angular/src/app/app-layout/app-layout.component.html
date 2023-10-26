@@ -1,0 +1,17 @@
+<div class="layout-container">
+    <app-header (toggleSidebarClick)="onToggleSidebar()"></app-header>
+    
+    <main>
+      <div class="content-container">
+        <div class="sidebar" style="display: flex;" [ngClass]="{ 'show-sidebar': isSidebarOpen }">
+              <app-sidebar-menu style="display: flex;" [isToggled]="isSidebarOpen" (menuItemClicked)="onMenuItemClicked($event)"></app-sidebar-menu>
+        </div>
+        <div [ngClass]="{ 'expanded': isSidebarOpen, 'collapsed': !isSidebarOpen }">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  
+      <app-footer></app-footer>
+  </div>
+  

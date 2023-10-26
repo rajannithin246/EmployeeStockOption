@@ -1,0 +1,62 @@
+.sidebar {
+    position: relative;
+    top: 0;
+    left: -250px; /* Initially hidden to the left */
+    width: 250px; /* Width of the sidebar */
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    border-right: 2px solid #555; /* Add borders to the right side */
+    transition: left 0.3s; /* Add animation transition for sliding effect */
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    border-bottom: 1px solid #555; /* Add borders between menu items */
+    cursor: pointer;
+    transition: background-color 0.2s; /* Add animation transition for background color */
+  }
+  
+  .sidebar li:hover {
+    background-color: #555; /* Change background color on hover */
+  }
+  
+  .toggle-button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .toggle-button i {
+    font-size: 20px;
+  }
+  
+  /* Animation class to show the sidebar */
+  .show-sidebar {
+    left: 0;
+  }
+  
+  /* Style for the sidebar button */
+  .show-sidebar .toggle-button {
+    background-color: #444;
+  }
+  
+  .show-sidebar .toggle-button i {
+    transform: rotate(180deg); /* Rotate the chevron icon when the sidebar is open */
+  }
+
+  .open {
+    transform: translateX(0);
+  }
+  
+  .closed {
+    transform: translateX(-250px);
+  }
+  

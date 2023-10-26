@@ -1,0 +1,11 @@
+<div class="sidebar" [ngClass]="{ 'show-sidebar': isSidebarOpen }">
+
+    <!-- <button (click)="toggleSidebar()" class="toggle-button">
+      <i [ngClass]="isSidebarOpen ? 'fa fa-chevron-left' : 'fa fa-chevron-right'"></i>
+    </button> -->
+    <ul>
+      <li (click)="navigateToComponent('dashboard')">Dashboard</li>
+      <li (click)="navigateToComponent('profile')">Profile</li>
+    </ul>
+  </div>
+  
