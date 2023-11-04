@@ -1,16 +1,20 @@
 <!-- header.component.html -->
-<header>
-    <button (click)="onToggleSidebarClick()">☰</button>
-    <div class="logo">
-      <!-- <img src="your-logo.png" alt="Logo"> -->
-      <h1>SBI Bank</h1>
+<header class="interactive-header">
+    <!-- <button >☰</button> -->
+    <button (click)="onToggleSidebarClick()" id="toggleSidebarButton" class="hamburger-icon">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+  </button>
+  <h1>SBI Life</h1>
+  <div class="user-info">
+    <div class="user-image">
+      <img src="../../../assets/images/userImage.jpg" alt="User Image" width="40" height="40">
     </div>
-    <nav>
-      <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="user-name">
+        <p>{{userName.userName}}</p>
+    </div>
+</div>
+    
   </header>
   

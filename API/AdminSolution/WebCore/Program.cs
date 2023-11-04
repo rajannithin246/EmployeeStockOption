@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebCore.Data;
+using WebCore.Interface;
+using WebCore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
+builder.Services.AddTransient<IAuthService, AuthService>();
 
 var app = builder.Build();
 //using (var scope = app.Services.CreateScope())

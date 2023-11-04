@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output,HostListener, Input,SimpleChanges, OnChanges   } from '@angular/core';
 import { SharedService } from '../shared-service/shared.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -9,13 +10,20 @@ import { SharedService } from '../shared-service/shared.service';
 export class SidebarMenuComponent implements OnChanges  {
   @Output() menuItemClicked = new EventEmitter<string>();
   @Input() isToggled: any;
+  @Input() isAdmin: boolean = false;
+  activeRoute: string = '';
   isSidebarOpen = false;
 
-  constructor(){
-
+  constructor(private router: Router, private activatedRoute: ActivatedRoute){
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeRoute = event.url;
+      }
+    });
   }
 
   ngOnInit(): void {
+    console.log(this.isAdmin)
    
   }
   ngOnChanges(changes: SimpleChanges) {
@@ -39,6 +47,10 @@ export class SidebarMenuComponent implements OnChanges  {
   navigateToComponent(componentName: string) {
     this.menuItemClicked.emit(componentName);
 
+  }
+
+  isMenuItemActive(path: string): boolean {
+    return this.activeRoute.includes(path);
   }
 
 }

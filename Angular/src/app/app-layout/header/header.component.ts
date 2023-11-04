@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { SharedService } from 'src/app/shared-service/shared.service';
 
 @Component({
@@ -7,14 +7,22 @@ import { SharedService } from 'src/app/shared-service/shared.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  userName :any;
+  @Input() userData: any;
   @Output() toggleSidebarClick = new EventEmitter<void>();
   constructor(private sharedService: SharedService) {}
-  // toggleSidebar() {
-  //   this.sharedService.toggleSidebar();
-  // }
+ 
 
   onToggleSidebarClick() {
     this.toggleSidebarClick.emit();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['userData']) {
+  this.userName = changes['userData'].currentValue;
+  const previousValue = changes['userData'].previousValue;
+}
+}
+
 
 }

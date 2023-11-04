@@ -1,11 +1,22 @@
 <div class="sidebar" [ngClass]="{ 'show-sidebar': isSidebarOpen }">
-
-    <!-- <button (click)="toggleSidebar()" class="toggle-button">
-      <i [ngClass]="isSidebarOpen ? 'fa fa-chevron-left' : 'fa fa-chevron-right'"></i>
-    </button> -->
-    <ul>
-      <li (click)="navigateToComponent('dashboard')">Dashboard</li>
-      <li (click)="navigateToComponent('profile')">Profile</li>
-    </ul>
-  </div>
-  
+  <ul class="sidebar-menu" *ngIf="isAdmin">
+    <li class="dt-flex" [ngClass]="{ 'active': isMenuItemActive('/approved-nomination') }">
+      <a routerLink="/dashboard/approved-nomination">Approved Nominations</a>
+    </li>
+    <li class="dt-flex" [ngClass]="{ 'active': isMenuItemActive('/policy') }">
+      <a routerLink="/dashboard/policy">Policy & Legal content</a>
+    </li>
+    <li class="dt-flex" [ngClass]="{ 'active': isMenuItemActive('/acknowledgement') }">
+      <a routerLink="/dashboard/acknowledgement">Acknowledgment status</a>
+    </li>
+    <li class="dt-flex" [ngClass]="{ 'active': isMenuItemActive('/vesting-details') }">
+      <a routerLink="/dashboard/vesting-details">Vesting Details</a>
+    </li>
+  </ul>
+  <ul class="sidebar-menu" *ngIf="!isAdmin">
+    <li class="dt-flex" [ngClass]="{ 'active': isMenuItemActive('/stock-options') }">
+      <a routerLink="/dashboard/stock-options">Stock Options</a>
+    </li>
+   
+  </ul>
+</div>

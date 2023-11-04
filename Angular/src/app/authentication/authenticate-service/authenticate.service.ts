@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
-  private apiUrl = 'http://localhost:5276/api/user/insert';
+  private apiUrl = 'https://localhost:7228/api/login/user';
 
 
   constructor(private http: HttpClient) {}
 
-  insertUser(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  authenticateUser(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data)
+      .pipe(
+        catchError((error: any) => {
+          console.error('An error occurred:', error);
+          throw error;
+        })
+      );
   }
+  
 }

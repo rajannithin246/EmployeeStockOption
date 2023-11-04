@@ -9,25 +9,24 @@ import { SharedService } from '../shared-service/shared.service';
   styleUrls: ['./app-layout.component.css']
 })
 export class AppLayoutComponent {
+  isHrAdmin: boolean = false;
   isSidebarOpen = false;
-  constructor(private sharedService: SharedService){
-    
-  }
-  onMenuItemClicked(componentName: string) {
-    // Implement navigation logic here, e.g., using Angular Router.
-    // You can navigate to the selected component based on its name.
+  userData: any;
+  constructor(private sharedService: SharedService) {
+
   }
 
   onToggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
-    // this.sharedService.toggleSidebar();
-    // this.sharedService.sidebarOpen$.subscribe((isOpen) => {
-    //   this.isSidebarOpen = isOpen;
-    // });
-    
   }
+  
   ngOnInit(): void {
-    
+    this.sharedService.getUserData().subscribe((data) => {
+      if (data && data.data)
+        this.userData = data.data;
+      this.isHrAdmin = data.data.role === 'admin';
+
+    });
   }
 
 }

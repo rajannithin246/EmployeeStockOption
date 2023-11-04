@@ -4,8 +4,6 @@ using WebCore.Models;
 
 namespace WebCore.Controllers
 {
-    [Route("api/auth")]
-    [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -15,25 +13,26 @@ namespace WebCore.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
+        [HttpPost("api/login/user")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _authService.AuthenticateAsync(loginDto.Email, loginDto.Password);
 
             if (user == null)
             {
-                return Unauthorized(); // Return a 401 Unauthorized status if authentication fails
-            }
-
-           
-            if (user.Role == "admin")
-            {
-                return Redirect("/admin/dashboard"); // Redirect to the admin dashboard
+                return Unauthorized(); 
             }
             else
             {
-                return Redirect("/user/dashboard"); // Redirect to the user dashboard
+                return Ok(new
+                {
+                    status = "success",
+                    message = "User data inserted successfully",
+                    data = new { userId = user.UserId, userName = user.Username, role = user.Role }
+                });
+
             }
+
         }
     }
 
